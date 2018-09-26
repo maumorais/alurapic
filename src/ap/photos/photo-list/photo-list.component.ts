@@ -20,12 +20,15 @@ export class PhotoListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   userName = '';
 
+
   constructor(private activatedRoute: ActivatedRoute, private service: PhotoService) {}
 
   ngOnInit(): void {
     this.userName = this.activatedRoute.snapshot.params.userName;
 
     this.photos = this.activatedRoute.snapshot.data['photos'];
+
+
 
     this.debounce
       .pipe(debounceTime(300))
