@@ -1,8 +1,8 @@
-import {Photo} from '../photo/Photo';
-import {PhotoService} from '../photo/photo.service';
 import { HttpEvent } from '@angular/common/http';
 import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+
+import {Photo} from '../photo/Photo';
 
 @Component({
   selector: 'ap-photo-list',
@@ -13,14 +13,9 @@ export class PhotoListComponent implements OnInit {
   photos: Photo[] = [];
   filter = '';
 
-  constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-
-    const userName = this.activatedRoute.snapshot.params.userName;
-
-    this.photoService
-      .listFromUser(userName)
-      .subscribe(photos => this.photos = photos);
+    this.photos = this.activatedRoute.snapshot.data['photos'];
   }
 }
