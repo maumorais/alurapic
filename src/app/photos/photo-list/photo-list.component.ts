@@ -33,6 +33,7 @@ export class PhotoListComponent implements OnInit {
     this.service
       .listFromUserPaginated(this.userName, ++this.currentPage)
       .subscribe(photos => {
+        this.filter = '';
         this.photos = this.photos.concat(photos);
         if (!photos.length) {
           this.hasMore = false;
