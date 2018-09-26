@@ -1,6 +1,7 @@
 import {Photo} from '../photo/Photo';
 import {PhotoService} from '../photo/photo.service';
-import {Component, OnInit} from '@angular/core';
+import { HttpEvent } from '@angular/common/http';
+import {Component, OnInit, OnChanges, SimpleChanges} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -9,8 +10,8 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./photo-list.component.css']
 })
 export class PhotoListComponent implements OnInit {
-
   photos: Photo[] = [];
+  filter = '';
 
   constructor(private photoService: PhotoService, private activatedRoute: ActivatedRoute) {}
 
@@ -22,5 +23,4 @@ export class PhotoListComponent implements OnInit {
       .listFromUser(userName)
       .subscribe(photos => this.photos = photos);
   }
-
 }
